@@ -78,6 +78,18 @@ a.card:hover .t{color:var(--accent)}
 .arrow{font-family:var(--mono);color:var(--accent);white-space:nowrap}
 .wait{font-family:var(--mono);color:var(--muted)}
 
+.card .foot{margin-top:auto}
+.toggle{font:inherit;font-family:var(--mono);font-size:13px;color:var(--accent);background:none;border:0;padding:4px 0;cursor:pointer}
+.toggle:hover{text-decoration:underline}
+.grid{grid-auto-flow:dense}
+.card.open{grid-column:1/-1}
+.stores{list-style:none;margin:-4px 0 0;padding:0;border-top:1px solid var(--line);display:grid;grid-template-columns:1fr 1fr;column-gap:40px}
+.stores li{display:flex;justify-content:space-between;align-items:baseline;gap:12px;border-bottom:1px solid var(--line);font-size:15px}
+.stores li>a{display:flex;justify-content:space-between;align-items:baseline;gap:12px;width:100%;padding:10px 0;text-decoration:none}
+.stores li>a:hover span:first-child{color:var(--accent)}
+.stores .off{padding:10px 0;color:var(--muted)}
+.stores .wait{font-size:12px}
+
 /* links */
 .links a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding:22px 0;border-top:1px solid var(--line);text-decoration:none}
 .links a:last-child{border-bottom:1px solid var(--line)}
@@ -99,6 +111,7 @@ footer{border-top:1px solid var(--line);padding-block:32px 56px;color:var(--mute
   h1::after{content:"";position:absolute;right:0;top:calc(50% - 32px);width:38%;height:65px;pointer-events:none;background:var(--staff);-webkit-mask-image:linear-gradient(to left,#000 30%,transparent);mask-image:linear-gradient(to left,#000 30%,transparent)}
   .grid,.commission ul{grid-template-columns:1fr}
   .card.fill{display:none}
+  .stores{grid-template-columns:1fr}
   .commission{padding:24px 20px}
   .nav nav{gap:18px}
 }
@@ -165,11 +178,18 @@ var TYPES=["전체"].concat(ORDER.filter(function(t){return found.indexOf(t)>=0}
 var cur="전체";
 WORKS.sort(function(a,b){return b.y-a.y});
 function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+var openKey=null;
+function keyOf(w){return w.y+w.t}
 function card(w){
   var kind=w.kind==="ebook"?"전자책":"무료 공개";
-  var inner='<div class="top"><span class="y">'+w.y+'</span><span class="tag">'+esc(w.type)+'</span></div>'
-    +'<div class="mid"><h3 class="t">'+esc(w.t)+'</h3><p class="c">'+esc(w.c)+(w.note?'<span class="note">'+esc(w.note)+'</span>':'')+'</p></div>'
-    +'<div class="foot"><span class="tag acc">'+kind+'</span>'+(w.url?'<span class="arrow">보기 ↗</span>':'<span class="wait">링크 준비 중</span>')+'</div>';
+  var top='<div class="top"><span class="y">'+w.y+'</span><span class="tag">'+esc(w.type)+'</span></div>'
+    +'<div class="mid"><h3 class="t">'+esc(w.t)+'</h3><p class="c">'+esc(w.c)+(w.note?'<span class="note">'+esc(w.note)+'</span>':'')+'</p></div>';
+  if(w.links&&w.links.length){
+    var k=keyOf(w), isOpen=openKey===k;
+    var list=isOpen?'<ul class="stores">'+w.links.map(function(l){return l.u?'<li><a href="'+esc(l.u)+'" target="_blank" rel="noopener"><span>'+esc(l.n)+'</span><span class="arrow">보기 ↗</span></a></li>':'<li><span class="off">'+esc(l.n)+'</span><span class="wait">준비 중</span></li>'}).join("")+'</ul>':'';
+    return '<div class="card'+(isOpen?' open':'')+'">'+top+'<div class="foot"><span class="tag acc">'+kind+'</span><button type="button" class="toggle" data-k="'+esc(k)+'" aria-expanded="'+isOpen+'">판매처 '+w.links.length+'곳 '+(isOpen?'접기 ▴':'보기 ▾')+'</button></div>'+list+'</div>';
+  }
+  var inner=top+'<div class="foot"><span class="tag acc">'+kind+'</span>'+(w.url?'<span class="arrow">보기 ↗</span>':'<span class="wait">링크 준비 중</span>')+'</div>';
   return w.url?'<a class="card" href="'+esc(w.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="card">'+inner+'</div>';
 }
 function render(){
@@ -182,6 +202,7 @@ function render(){
   if(items.length%2===1&&items.length>1){g.insertAdjacentHTML("beforeend",'<div class="card fill" aria-hidden="true"></div>')}
 }
 document.addEventListener("click",function(e){
+  var tg=e.target.closest(".toggle"); if(tg){var k=tg.getAttribute("data-k");openKey=openKey===k?null:k;render();document.querySelectorAll(".toggle").forEach(function(b){if(b.getAttribute("data-k")===k)b.focus()});return}
   var c=e.target.closest(".chip"); if(c){cur=c.getAttribute("data-l");render();var b=document.querySelector('.chip[data-l="'+cur+'"]');if(b)b.focus()}
 });
 document.getElementById("copy").addEventListener("click",function(){
