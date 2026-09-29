@@ -1,0 +1,209 @@
+<!doctype html>
+<html lang="ko">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<meta name="description" content="오페라와 성악 가사 번역 포트폴리오">
+<title>가사 번역 노트</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Noto+Sans+KR:wght@300;400;500;700&family=Noto+Serif+KR:wght@300;400;600;700&family=IBM+Plex+Mono:wght@400&display=swap">
+<style>
+/* Layout: gallery-style single page. Wide type-driven hero (stacked three-line title over faint staff lines), labelled sections with a left rail, works as a 2-column catalogue grid with a featured commission block, oversized link and contact lines. Warm neutrals, one wine accent, white ground. */
+:root{
+  --bg:#ffffff; --surface:#faf8f6; --fg:#1b1917; --muted:#6c655f; --line:#e7e2dd; --accent:#8a2a3a; --accent-soft:#f7ecee;
+  --sans:'Noto Sans KR',system-ui,-apple-system,'Apple SD Gothic Neo','Malgun Gothic',sans-serif;
+  --serif:'Noto Serif KR','Batang',serif;
+  --mono:'IBM Plex Mono',ui-monospace,Menlo,monospace;
+  color-scheme:light;
+}
+*{box-sizing:border-box}
+body{background:var(--bg);color:var(--fg);font-family:var(--sans);font-size:16px;line-height:1.8;padding-inline:24px;padding-block:0;word-break:keep-all}
+.wrap{max-width:1040px;margin-inline:auto}
+a{color:inherit}
+:focus-visible{outline:2px solid var(--accent);outline-offset:3px;border-radius:3px}
+header.nav{position:sticky;top:env(safe-area-inset-top,0px);z-index:5;background:var(--bg);margin-inline:-24px;padding-inline:24px;border-bottom:1px solid var(--line)}
+.nav .wrap{display:flex;align-items:center;justify-content:space-between;gap:16px;min-height:64px;flex-wrap:wrap}
+.brand{font-family:var(--serif);font-weight:700;font-size:17px;letter-spacing:-.01em;text-decoration:none}
+.nav nav{display:flex;gap:28px;font-size:14px}
+.nav nav a{color:var(--muted);text-decoration:none}
+.nav nav a:hover{color:var(--accent)}
+
+/* hero */
+.hero{position:relative;overflow:hidden;padding-block:112px 96px}
+.hero::before{content:"";position:absolute;right:0;top:calc(50% - 32px);width:68%;height:65px;
+  --sl:linear-gradient(#d9d1c9,#d9d1c9);
+  background:var(--sl) 0 0/100% 1px no-repeat,var(--sl) 0 16px/100% 1px no-repeat,var(--sl) 0 32px/100% 1px no-repeat,var(--sl) 0 48px/100% 1px no-repeat,var(--sl) 0 64px/100% 1px no-repeat;
+  -webkit-mask-image:linear-gradient(to left,#000 30%,transparent);mask-image:linear-gradient(to left,#000 30%,transparent);pointer-events:none}
+.hero>*{position:relative}
+.eyebrow{font-family:var(--mono);font-size:12px;letter-spacing:.14em;text-transform:uppercase;color:var(--accent);margin:0 0 32px}
+h1{font-family:var(--serif);font-weight:600;font-size:clamp(46px,11vw,124px);line-height:1.12;letter-spacing:-.04em;margin:0 0 40px}
+h1 span{display:block}
+.who{display:flex;flex-wrap:wrap;gap:8px 32px;align-items:baseline;font-size:15px;color:var(--muted);margin:0}
+.who b{color:var(--fg);font-weight:500}
+
+/* sections */
+section{display:grid;grid-template-columns:180px 1fr;gap:24px 48px;padding-block:88px;border-top:1px solid var(--line)}
+section>.body{min-width:0}
+h2{margin:6px 0 0;font-size:12px;font-family:var(--mono);font-weight:400;letter-spacing:.14em;text-transform:uppercase;color:var(--accent)}
+
+/* about */
+.about p{font-family:var(--serif);font-size:clamp(18px,2.3vw,22px);line-height:1.95;font-weight:400;margin:0 0 28px;max-width:32em}
+.about p:last-child{margin:0;color:var(--muted)}
+
+/* works */
+.filters{display:flex;flex-wrap:wrap;gap:8px;margin-bottom:28px}
+.chip{font:inherit;font-size:14px;padding:6px 16px;border-radius:999px;border:1px solid var(--line);background:transparent;color:var(--muted);cursor:pointer}
+.chip:hover{border-color:var(--accent);color:var(--accent)}
+.chip[aria-pressed="true"]{background:var(--accent);border-color:var(--accent);color:#fff}
+.commission{background:var(--accent-soft);border-radius:4px;padding:32px;margin-bottom:24px}
+.commission .k{font-family:var(--mono);font-size:12px;letter-spacing:.12em;color:var(--accent);margin:0 0 6px}
+.commission h3{font-family:var(--serif);font-weight:600;font-size:clamp(20px,3vw,26px);letter-spacing:-.02em;margin:0 0 20px;line-height:1.4}
+.commission ul{list-style:none;margin:0;padding:0;display:grid;grid-template-columns:1fr 1fr;gap:0 32px}
+.commission li{padding:14px 0;border-top:1px solid rgba(138,42,58,.22);min-width:0}
+.commission li .c{display:block;font-size:13px;color:var(--muted)}
+.commission li .t{font-family:var(--serif);font-size:17px;font-weight:600}
+.grid{display:grid;grid-template-columns:1fr 1fr;gap:1px;background:var(--line);border:1px solid var(--line)}
+.card{background:var(--bg);padding:28px 28px 24px;display:flex;flex-direction:column;gap:20px;min-height:220px;text-decoration:none;color:inherit;min-width:0}
+a.card:hover{background:var(--surface)}
+a.card:hover .t{color:var(--accent)}
+.card .top{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap}
+.card .y{font-family:var(--mono);font-size:13px;color:var(--muted);letter-spacing:.06em}
+.card .mid{flex:1}
+.card .t{font-family:var(--serif);font-size:clamp(22px,2.6vw,26px);font-weight:600;line-height:1.35;letter-spacing:-.02em;margin:0 0 6px}
+.card .c{color:var(--muted);font-size:15px;margin:0}
+.card .note{display:block;font-size:13px;color:var(--accent);margin-top:4px}
+.card .foot{display:flex;justify-content:space-between;align-items:center;gap:12px;font-size:13px}
+.tag{font-family:var(--mono);font-size:12px;padding:2px 10px;border-radius:999px;color:var(--muted);border:1px solid var(--line);white-space:nowrap}
+.tag.acc{color:var(--accent);background:var(--accent-soft);border-color:transparent}
+.arrow{font-family:var(--mono);color:var(--accent);white-space:nowrap}
+.wait{font-family:var(--mono);color:var(--muted)}
+
+/* links */
+.links a{display:flex;justify-content:space-between;align-items:baseline;gap:16px;flex-wrap:wrap;padding:22px 0;border-top:1px solid var(--line);text-decoration:none}
+.links a:last-child{border-bottom:1px solid var(--line)}
+.links .t{font-family:var(--serif);font-size:clamp(22px,3.4vw,32px);font-weight:600;letter-spacing:-.02em}
+.links .c{color:var(--muted);font-size:14px}
+.links a:hover .t{color:var(--accent)}
+
+/* contact */
+.contact .mail{font-family:var(--serif);font-size:clamp(22px,5.4vw,48px);font-weight:600;letter-spacing:-.02em;line-height:1.3;margin:0 0 24px;overflow-wrap:anywhere;user-select:all}
+.contact p{max-width:32em;margin:0 0 24px;color:var(--muted)}
+.btn{font:inherit;font-size:14px;padding:8px 18px;border-radius:4px;border:1px solid var(--accent);background:var(--accent);color:#fff;cursor:pointer}
+.btn:hover{background:transparent;color:var(--accent)}
+footer{border-top:1px solid var(--line);padding-block:32px 56px;color:var(--muted);font-size:13px;display:flex;justify-content:space-between;flex-wrap:wrap;gap:8px}
+[hidden]{display:none!important}
+@media (max-width:760px){
+  section{grid-template-columns:1fr;gap:16px;padding-block:64px}
+  .hero{padding-block:72px 64px}
+  .hero::before{width:100%;top:auto;bottom:24px}
+  .grid,.commission ul{grid-template-columns:1fr}
+  .card.fill{display:none}
+  .commission{padding:24px 20px}
+  .nav nav{gap:18px}
+}
+</style>
+</head>
+<body>
+
+<header class="nav"><div class="wrap">
+  <a class="brand" href="#top">김민성</a>
+  <nav aria-label="주 메뉴"><a href="#about">소개</a><a href="#works">번역 작품</a><a href="#links">관련 링크</a><a href="#contact">문의</a></nav>
+</div></header>
+
+<main class="wrap" id="top">
+  <div class="hero">
+    <p class="eyebrow">Opera &amp; Vocal Lyrics Translation</p>
+    <h1><span>작품을,</span><span>우리말로,</span><span>다시</span></h1>
+    <p class="who"><b>김민성</b><span>오페라·성악 가사 번역</span><span>2022 –</span></p>
+  </div>
+
+  <section id="about">
+    <h2>About</h2>
+    <div class="body about">
+      <p>오페라와 성악 가사에 대한 애정으로 번역을 시작했습니다. 국내에서 널리 사용되는 오페라 번역 가운데 어휘 선택이나 문맥 오해로 인해 작품의 의미가 퇴색되는 사례가 빈번하다는 점에 아쉬움을 느껴, 직접 번역에 나서게 되었습니다.</p>
+      <p>정식 번역 교육을 받지는 않았지만, 각국 원문과 다양한 기존 번역 및 해석, 음악적 맥락 등을 종합적으로 참조하며 문학적 정확성과 감상의 직관성을 동시에 추구하는 번역을 지향해 왔습니다. 단순한 직역을 넘어서서, 음악과의 동기화까지 고려한 언어를 구현하고자 꾸준히 연구하고 있습니다.</p>
+    </div>
+  </section>
+
+  <section id="works">
+    <h2>Works</h2>
+    <div class="body">
+      <div class="filters" role="group" aria-label="형식별 보기" id="filters"></div>
+      <div id="feature"></div>
+      <div class="grid" id="list"></div>
+    </div>
+  </section>
+
+  <section id="links">
+    <h2>Links</h2>
+    <div class="body links">
+      <a href="https://blog.naver.com/ohdorong5" target="_blank" rel="noopener"><span class="t">네이버 블로그 ↗</span><span class="c">ohdorong5님의 블로그</span></a>
+      <a href="https://offert4324.tistory.com/" target="_blank" rel="noopener"><span class="t">티스토리 ↗</span><span class="c">offert4324.tistory.com</span></a>
+      <a href="https://brunch.co.kr/@offert4324" target="_blank" rel="noopener"><span class="t">브런치 ↗</span><span class="c">오팔트의 브런치</span></a>
+      <a href="https://www.youtube.com/@Offert_4324" target="_blank" rel="noopener"><span class="t">유튜브 ↗</span><span class="c">오팔트 - YouTube</span></a>
+    </div>
+  </section>
+
+  <section id="contact">
+    <h2>Contact</h2>
+    <div class="body contact">
+      <p>번역 의뢰, 잘못된 부분에 대한 제보, 공연 프로그램 번역 문의를 환영합니다.</p>
+      <div class="mail" id="addr">ohdorong3@gmail.com</div>
+      <button class="btn" id="copy" type="button">주소 복사</button>
+    </div>
+  </section>
+
+  <footer><span>© 2026 김민성</span><span>Lyrics Translation</span></footer>
+</main>
+
+<script>
+var TIMF={year:2025,items:[
+  {t:"《원인과 결과》",c:"황룽 판"},
+  {t:"《4개의 가곡, Op. 2》",c:"쇤베르크"},
+  {t:"《어린이의 이상한 뿔피리》 [4곡 발췌]",c:"말러"},
+  {t:"《전쟁 레퀴엠》",c:"브리튼"}
+]};
+var WORKS=[
+ {y:2026,t:"《몬테카를로의 여인》",c:"풀랑크",type:"그 외",kind:"free",url:"http://to.goclassic.co.kr/file/630"},
+ {y:2025,t:"《현악 사중주 2번》",c:"쇤베르크",type:"그 외",kind:"free",url:"http://to.goclassic.co.kr/file/612"},
+ {y:2025,t:"《교향곡 3번 “밤의 노래”》",c:"시마노프스키",type:"교향곡",kind:"free",url:"http://to.goclassic.co.kr/file/609"},
+ {y:2025,t:"《전쟁 레퀴엠》",c:"브리튼",type:"그 외",kind:"free",url:"http://to.goclassic.co.kr/file/608",note:"TIMF 번역 개정 버전"},
+ {y:2024,t:"《교향곡 2번 “부활”》",c:"말러",type:"교향곡",kind:"free",url:"http://to.goclassic.co.kr/file/606"},
+ {y:2024,t:"《교향곡 14번》",c:"쇼스타코비치",type:"교향곡",kind:"free",url:"http://to.goclassic.co.kr/file/605"},
+ {y:2023,t:"《죽음의 도시》",c:"코른골트",type:"오페라",kind:"ebook",url:""},
+ {y:2023,t:"《투란도트》",c:"푸치니",type:"오페라",kind:"ebook",url:"https://www.epubple.com/mypage/books/7425"},
+ {y:2022,t:"《카르멘》",c:"비제",type:"오페라",kind:"free",url:"http://to.goclassic.co.kr/file/460"},
+ {y:2022,t:"《푸른 수염의 성》",c:"버르토크",type:"오페라",kind:"free",url:"http://to.goclassic.co.kr/file/459"}
+];
+var TYPES=["전체","오페라","교향곡","그 외"], cur="전체";
+function esc(s){return String(s).replace(/[&<>"]/g,function(c){return {"&":"&amp;","<":"&lt;",">":"&gt;",'"':"&quot;"}[c]})}
+function card(w){
+  var kind=w.kind==="ebook"?"전자책":"무료 공개";
+  var inner='<div class="top"><span class="y">'+w.y+'</span><span class="tag">'+esc(w.type)+'</span></div>'
+    +'<div class="mid"><h3 class="t">'+esc(w.t)+'</h3><p class="c">'+esc(w.c)+(w.note?'<span class="note">'+esc(w.note)+'</span>':'')+'</p></div>'
+    +'<div class="foot"><span class="tag acc">'+kind+'</span>'+(w.url?'<span class="arrow">보기 ↗</span>':'<span class="wait">링크 준비 중</span>')+'</div>';
+  return w.url?'<a class="card" href="'+esc(w.url)+'" target="_blank" rel="noopener">'+inner+'</a>':'<div class="card">'+inner+'</div>';
+}
+function render(){
+  document.getElementById("filters").innerHTML=TYPES.map(function(l){return '<button type="button" class="chip" aria-pressed="'+(l===cur)+'" data-l="'+esc(l)+'">'+esc(l)+'</button>'}).join("");
+  document.getElementById("feature").innerHTML=cur==="전체"?'<div class="commission"><p class="k">'+TIMF.year+'</p><h3>통영국제음악제(TIMF) 위촉 번역</h3><ul>'+TIMF.items.map(function(i){return '<li><span class="c">'+esc(i.c)+'</span><span class="t">'+esc(i.t)+'</span></li>'}).join("")+'</ul></div>':'';
+  var items=WORKS.filter(function(w){return cur==="전체"||w.type===cur});
+  var g=document.getElementById("list");
+  g.innerHTML=items.map(card).join("");
+  g.style.display=items.length?"grid":"none";
+  if(items.length%2===1&&items.length>1){g.insertAdjacentHTML("beforeend",'<div class="card fill" aria-hidden="true"></div>')}
+}
+document.addEventListener("click",function(e){
+  var c=e.target.closest(".chip"); if(c){cur=c.getAttribute("data-l");render();var b=document.querySelector('.chip[data-l="'+cur+'"]');if(b)b.focus()}
+});
+document.getElementById("copy").addEventListener("click",function(){
+  var b=this,t=document.getElementById("addr").textContent;
+  function done(){b.textContent="복사됨";setTimeout(function(){b.textContent="주소 복사"},1500)}
+  function sel(){var r=document.createRange();r.selectNodeContents(document.getElementById("addr"));var s=getSelection();s.removeAllRanges();s.addRange(r)}
+  try{navigator.clipboard.writeText(t).then(done,sel)}catch(x){sel()}
+});
+render();
+</script>
+
+</body>
+</html>
